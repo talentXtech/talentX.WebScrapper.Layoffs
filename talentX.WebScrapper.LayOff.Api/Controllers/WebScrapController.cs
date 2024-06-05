@@ -144,5 +144,21 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
                 return File(memoryStream.ToArray(), "text/csv", $"LayOffScrapper-{DateTime.Now.ToString("s")}.csv");
             }
         }
+
+        [HttpDelete("DeleteScrapOutputData")]
+        public async Task<IActionResult> DeleteScrapOutputData()
+        {
+            try
+            {
+                await _scrapDataRepo.DeleteOutputDataAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return BadRequest(ex.Message);
+
+            }
+        }
     }
 }
