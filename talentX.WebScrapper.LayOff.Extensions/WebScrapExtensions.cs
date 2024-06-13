@@ -86,9 +86,14 @@ namespace talentX.WebScrapper.LayOff.Extensions
         }
         public static string FindElementTextFromParentBySelector(this IWebElement parentElement, string selector)
         {
-            var element = parentElement.FindElement(By.CssSelector(selector));
-            var text = element.Text;
-            return text;
+            var element = parentElement.FindElements(By.CssSelector(selector));
+            string text;
+            if(element.Count > 0)
+            {
+                text = element[0].Text;
+                return text;
+            }
+            return "";
         }
 
         public static string FindElementTextFromParentByClass(this IWebElement parentElement, string className)

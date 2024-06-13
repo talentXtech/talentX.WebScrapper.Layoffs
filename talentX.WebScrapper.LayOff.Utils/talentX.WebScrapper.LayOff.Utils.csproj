@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\talentX.WebScrapper.LayOff.Entities\talentX.WebScrapper.LayOff.Entities.csproj" />
     <ProjectReference Include="..\talentX.WebScrapper.LayOff.Extensions\talentX.WebScrapper.LayOff.Extensions.csproj" />
   </ItemGroup>
 
