@@ -24,7 +24,7 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
             _scrapDataRepo = scrapDataRepo;
         }
 
-        [HttpGet("GetScrapInfo")]
+        [HttpPost("GetScrapInfo")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> LayOffScrapInfo()
         {
