@@ -18,10 +18,12 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
     public class WebScrapController : ControllerBase
     {
         private readonly IScrapDataRepo _scrapDataRepo;
+        private readonly ILogger<WebScrapController> _logger;
 
-        public WebScrapController(IScrapDataRepo scrapDataRepo)
+        public WebScrapController(IScrapDataRepo scrapDataRepo, ILogger<WebScrapController> logger)
         {
             _scrapDataRepo = scrapDataRepo;
+            _logger = logger;
         }
 
         [HttpPost("GetScrapInfo")]
@@ -71,7 +73,7 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex.Message, ex);
                 var apiResponse = ResponseUtils.GetBadRequestResponse(ex.Message);
                 return BadRequest(apiResponse);
 
@@ -83,7 +85,7 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
             }
         }
 
-        private static void ScrapDataFromEachRow(List<ScrapOutputData> outputDataList, ReadOnlyCollection<IWebElement> leftPaneRowElements, ReadOnlyCollection<IWebElement> rightPaneRowElements)
+        private static void ScrapDataFromEachRow(List<ScrapOutputData> outputDataList, ReadOnlyCollection<IWebElement> leftPaneRowElements, ReadOnlyCollection<IWebElement> rightPaneRowElements )
         {
             foreach (var leftPaneRowElement in leftPaneRowElements)
             {
@@ -134,8 +136,9 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+             
                     throw;
                 }
             }
@@ -162,6 +165,7 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex);
                 var apiResponse = ResponseUtils.GetBadRequestResponse(ex.Message);
                 return BadRequest(apiResponse);
             }
@@ -179,6 +183,7 @@ namespace talentX.WebScrapper.LayOff.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex);
                 var apiResponse = ResponseUtils.GetBadRequestResponse(ex.Message);
                 return BadRequest(apiResponse);
 

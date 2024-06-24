@@ -11,13 +11,14 @@ using talentX.WebScrapper.LayOff.Repositories.Data;
 namespace talentX.WebScrapper.LayOff.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240529081036_Initial")]
-    partial class Initial
+    [Migration("20240624174137_changedLayoffSchema")]
+    partial class changedLayoffSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("layoff")
                 .HasAnnotation("ProductVersion", "6.0.31")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -75,7 +76,7 @@ namespace talentX.WebScrapper.LayOff.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ScrapOutputDatas");
+                    b.ToTable("ScrapOutputDatas", "layoff");
                 });
 #pragma warning restore 612, 618
         }

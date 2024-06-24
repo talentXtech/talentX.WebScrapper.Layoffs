@@ -16,16 +16,8 @@ namespace talentX.WebScrapper.LayOff.Utils
         }
         public static void CloseComplianceOverlay(ChromeDriver driver)
         {
-            try
-            {
                 var complianceOverlayElement = driver.FindElements(By.Id("onetrust-button-group"));
                 if (complianceOverlayElement.Count() > 0) { complianceOverlayElement[0].ClickButtonById("onetrust-accept-btn-handler"); }
-            }
-            catch (Exception)
-            {
-
-                Console.WriteLine("Stale error skipped");
-            }
         }
     }
     

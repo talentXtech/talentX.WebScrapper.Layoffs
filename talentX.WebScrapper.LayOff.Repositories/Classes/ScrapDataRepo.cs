@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using talentX.WebScrapper.LayOff.Entities;
 using talentX.WebScrapper.LayOff.Repositories.Contracts;
 using talentX.WebScrapper.LayOff.Repositories.Data;
@@ -8,10 +9,12 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
     public class ScrapDataRepo : IScrapDataRepo
     {
         private readonly DataContext _context;
+        private readonly ILogger<ScrapDataRepo> _logger;
 
-        public ScrapDataRepo(DataContext context)
+        public ScrapDataRepo(DataContext context, ILogger<ScrapDataRepo> logger)
         {
             _context = context;
+            _logger = logger;
 
         }
         public async Task AddOutputDataAsync(ScrapOutputData outputData)
@@ -27,7 +30,7 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
 
@@ -42,7 +45,7 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
 
@@ -56,7 +59,7 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
 
@@ -71,7 +74,7 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
 

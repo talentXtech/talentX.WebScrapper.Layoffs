@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using talentX.WebScrapper.LayOff.Repositories.Data;
 
@@ -10,13 +11,13 @@ using talentX.WebScrapper.LayOff.Repositories.Data;
 namespace talentX.WebScrapper.LayOff.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240624171713_layoffs")]
+    partial class layoffs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("layoff")
                 .HasAnnotation("ProductVersion", "6.0.31")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -74,7 +75,7 @@ namespace talentX.WebScrapper.LayOff.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ScrapOutputDatas", "layoff");
+                    b.ToTable("ScrapOutputDatas");
                 });
 #pragma warning restore 612, 618
         }
