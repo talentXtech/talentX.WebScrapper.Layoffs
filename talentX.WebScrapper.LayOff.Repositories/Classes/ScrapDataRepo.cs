@@ -54,7 +54,7 @@ namespace talentX.WebScrapper.LayOff.Repositories.Classes
         {
             try
             {
-                _context.Database.ExecuteSqlRaw("TRUNCATE TABLE ScrapOutputDatas");
+                _context.Database.ExecuteSqlRaw("TRUNCATE TABLE [layoff].[ScrapOutputDatas]");
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
